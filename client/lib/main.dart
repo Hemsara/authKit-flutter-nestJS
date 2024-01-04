@@ -1,6 +1,9 @@
 import 'package:client/res/colors.dart';
+import 'package:client/res/dimens.dart';
+import 'package:client/shared/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:iconsax/iconsax.dart';
 
 void main() {
   runApp(const AuthKit());
@@ -12,6 +15,7 @@ class AuthKit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "TitilliumWeb",
         useMaterial3: false,
@@ -31,34 +35,38 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SvgPicture.asset(
-              'assets/images/nest.svg',
-              height: 90,
-            ),
-            const SizedBox(height: 15),
-            Text(
-              "Nest AuthKit",
-              style: TextStyle(
-                  fontSize: 30,
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.w600),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SvgPicture.asset(
+                'assets/images/nest.svg',
+                height: 90,
+              ),
+              AppDimens.gap(4), // Adjust spacing
+              Text(
+                "Nest AuthKit",
+                style: TextStyle(
+                    fontSize: 30,
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.w600),
+              ),
+              AppDimens.gap(5), // Adjust spacing
+              const PrimaryButton(
+                text: "Login now",
+                iconData: Iconsax.user,
+              ),
+              const PrimaryButton(
+                text: "Create an account",
+                iconData: Iconsax.user,
+              )
+            ],
+          ),
         ),
       ),
     );
