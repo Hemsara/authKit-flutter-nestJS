@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 'assets/images/nest.svg',
                 height: 90,
               ),
-              AppDimens.gap(4), // Adjust spacing
+              AppDimens.gap(1), // Adjust spacing
               Text(
                 "Nest AuthKit",
                 style: TextStyle(
@@ -56,7 +56,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: AppColors.primary,
                     fontWeight: FontWeight.w600),
               ),
-              AppDimens.gap(5), // Adjust spacing
+              AppDimens.gap(2), // Adjust spacing
+
+              Text(
+                "Robust authentication integration for your Flutter mobile app with NestJS on the server side.",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+              ),
+              AppDimens.gap(7), // Adjust spacing
               const PrimaryButton(
                 text: "Login now",
                 iconData: Iconsax.user,

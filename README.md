@@ -1,6 +1,6 @@
 🚀 FlutterNestAuth - Secure Authentication for Flutter and NestJS
 
-Build a robust authentication system for your Flutter mobile app with NestJS on the server side. This open-source project provides a customizable solution for user registration, login, password reset, and more. Seamlessly integrate social logins, implement multi-factor authentication, and ensure the highest standards of security. Get started quickly with this authentication kit, and empower your Flutter application with a reliable and scalable user authentication system.
+Robust authentication integration for your Flutter mobile app with NestJS on the server side. This open-source project provides a customizable solution for user registration, login, password reset, and more. Seamlessly integrate social logins, implement multi-factor authentication, and ensure the highest standards of security. Get started quickly with this authentication kit, and empower your Flutter application with a reliable and scalable user authentication system.
 
 🔐 Features:
 - User Registration (Signup)
