@@ -14,7 +14,7 @@ Build a robust authentication system for your Flutter mobile app with NestJS on 
 
 🛠️ Technologies:
 - Flutter for the client-side mobile app
-- NestJS for the server-side authentication logic
+- NestJS + Prisma for the server-side authentication logic
 - JWT for secure token-based authentication
 
 
