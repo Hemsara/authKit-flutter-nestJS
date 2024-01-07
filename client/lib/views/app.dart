@@ -1,8 +1,10 @@
-import 'package:client/res/colors.dart';
 import 'package:client/res/dimens.dart';
+import 'package:client/res/navigator.dart';
 import 'package:client/shared/button.dart';
+import 'package:client/shared/logo.dart';
+import 'package:client/views/login/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:iconsax/iconsax.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -22,38 +24,45 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SvgPicture.asset(
-                'assets/images/nest.svg',
-                height: 90,
-              ),
-              AppDimens.gap(1), // Adjust spacing
-              Text(
-                "Nest AuthKit",
-                style: TextStyle(
-                    fontSize: 30,
-                    color: AppColors.primary,
-                    fontWeight: FontWeight.w600),
-              ),
-              AppDimens.gap(2), // Adjust spacing
-
-              Text(
-                "Robust authentication integration for your Flutter mobile app with NestJS on the server side.",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-              ),
-              AppDimens.gap(7), // Adjust spacing
-              const PrimaryButton(
+              const Header(), // Adjust spacing
+              PrimaryButton(
+                onTap: () {
+                  NavigatorHelper.to(const LoginScreen());
+                },
                 text: "Login now",
                 iconData: Iconsax.user,
               ),
               const PrimaryButton(
                 text: "Create an account",
                 iconData: Iconsax.user,
-              )
+              ),
+              AppDimens.gap(2),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class Header extends StatelessWidget {
+  const Header({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const AuthKitLogo(), // Adjust spacing
+
+        Text(
+          "Robust authentication integration for your Flutter mobile app with NestJS on the server side.",
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+        ),
+        AppDimens.gap(7),
+      ],
     );
   }
 }
