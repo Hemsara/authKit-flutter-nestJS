@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:client/api/base_api_service.dart';
@@ -32,12 +33,12 @@ class ApiService extends BaseApiService {
       var resData = await response.stream.bytesToString();
       dynamic responseData = jsonDecode(resData);
       // Debugging output for request and response
-      debugPrint("=======");
-      debugPrint("🗣️ Sending $method request to $url");
-      debugPrint("🗣️ Sending data $data");
-      debugPrint("🗣️ Status code: ${response.statusCode}");
-      debugPrint("🗣️ Body: $resData");
-      debugPrint("=======");
+      log("=======");
+      log("🗣️ Sending $method request to $url");
+      log("🗣️ Sending data ${data ?? data!.toMap()}");
+      log("🗣️ Status code: ${response.statusCode}");
+      log("🗣️ Body: $resData");
+      log("=======");
 
       handleUnAuthenticated(response.statusCode, shouldNavigate);
 

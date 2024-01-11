@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:client/api/api_service.dart';
 import 'package:client/api/endpoints.dart';
-import 'package:client/api/models/api/error.dart';
 import 'package:client/api/models/api/response.dart';
 import 'package:client/models/dto/auth/login.dto.dart';
 import 'package:client/models/dto/auth/register.dto.dart';

@@ -48,7 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (mounted) {
         if (isSuccess) {
           ToastManager.showSuccessToast(context, "Registration success");
-          NavigatorHelper.to(const LoginScreen());
+          NavigatorHelper.replaceAll(const LoginScreen());
           return;
         }
         ToastManager.showErrorToast(context, viewModel.registeringError);
