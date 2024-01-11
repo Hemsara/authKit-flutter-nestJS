@@ -27,10 +27,8 @@ class BaseApiService {
   void handleUnAuthenticated(statusCode, shouldNavigate) {
     if (statusCode == 401) {
       if (shouldNavigate) {
-        // Navigate to the login screen
         NavigatorHelper.replaceAll(const LoginScreen());
       } else {
-        // Throw an error for unauthorized access
         throw ApiError(
           message: 'Unauthorized',
         );

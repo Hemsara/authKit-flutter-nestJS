@@ -30,7 +30,7 @@ class ApiService extends BaseApiService {
 
       http.StreamedResponse response = await request.send();
       var resData = await response.stream.bytesToString();
-
+      dynamic responseData = jsonDecode(resData);
       // Debugging output for request and response
       debugPrint("=======");
       debugPrint("🗣️ Sending $method request to $url");
@@ -39,11 +39,9 @@ class ApiService extends BaseApiService {
       debugPrint("🗣️ Body: $resData");
       debugPrint("=======");
 
-      // Handle unauthenticated responses and check for success or failure
       handleUnAuthenticated(response.statusCode, shouldNavigate);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        // Successful response
         return ApiResponse(
           status: RequestStatus.success,
           data: jsonDecode(resData),
@@ -51,8 +49,10 @@ class ApiService extends BaseApiService {
       }
 
       // Failed response
-      return ApiResponse(
-          data: jsonDecode(resData), status: RequestStatus.failed);
+      throw ApiError(
+          message: responseData['message'].runtimeType == List
+              ? (responseData['message'] as List).first
+              : responseData['message']);
     } on SocketException {
       // Handle network connectivity errors
       throw ApiError(message: "Unable to connect to the server");
@@ -62,6 +62,9 @@ class ApiService extends BaseApiService {
     } catch (e) {
       // Handle other errors
       debugPrint('An error thrown : $e');
+      if (e.runtimeType == ApiError) {
+        rethrow;
+      }
       throw ApiError(message: "Something went wrong");
     }
   }
@@ -118,7 +121,7 @@ class ApiService extends BaseApiService {
       method: "POST",
       endpoint: endpoint,
       data: data,
-      mustAuthenticated: isProtected ?? true ,
+      mustAuthenticated: isProtected ?? true,
     );
   }
 }

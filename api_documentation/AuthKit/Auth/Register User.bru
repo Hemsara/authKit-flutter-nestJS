@@ -1,0 +1,22 @@
+meta {
+  name: Register User
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseURL}}/auth/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "dede@mail.com",
+    "firstName": "dede",
+    "lastName": "eede",
+    "password": "ddkjendjkejee"
+    
+  }
+  
+}

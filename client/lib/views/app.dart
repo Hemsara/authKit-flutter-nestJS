@@ -3,6 +3,7 @@ import 'package:client/res/navigator.dart';
 import 'package:client/shared/button.dart';
 import 'package:client/shared/logo.dart';
 import 'package:client/views/login/screens/login_screen.dart';
+import 'package:client/views/register/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:iconsax/iconsax.dart';
@@ -32,7 +33,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 text: "Login now",
                 iconData: Iconsax.user,
               ),
-              const PrimaryButton(
+              PrimaryButton(
+                onTap: () {
+                  NavigatorHelper.to(const RegisterScreen());
+                },
                 text: "Create an account",
                 iconData: Iconsax.user,
               ),
