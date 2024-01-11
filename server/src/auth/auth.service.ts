@@ -75,6 +75,7 @@ export class AuthService {
         password: hash,
       },
     });
+    delete created.password;
 
     return this.responseHelperService.returnSuccess(created);
   }
