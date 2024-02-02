@@ -5,19 +5,22 @@ import 'package:client/models/dto/auth/login.dto.dart';
 import 'package:client/models/dto/auth/register.dto.dart';
 import 'package:client/repository/auth/auth_interface.dart';
 
+import '../../models/dto/auth/token_response.dart';
+
 class AuthRepository extends AuthInterface {
   final ApiService _apiService;
 
   AuthRepository(this._apiService);
 
   @override
-  Future<bool> login(LoginDTO dto) async {
+  Future<TokenResponse> login(LoginDTO dto) async {
     try {
       ApiResponse response = await _apiService.post(
+        navigateToLogin: false,
         data: dto,
         endpoint: EndPoints.login,
       );
-      return response.status == RequestStatus.success;
+      return TokenResponse(accessToken: response.data['access_token']);
     } catch (e) {
       rethrow;
     }

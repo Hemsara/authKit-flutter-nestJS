@@ -1,8 +1,5 @@
 import 'dart:async';
 
-import 'package:client/api/models/api/error.dart';
-import 'package:client/res/navigator.dart';
-import 'package:client/views/login/screens/login_screen.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class BaseApiService {
@@ -22,17 +19,5 @@ class BaseApiService {
       }
     }
     return headers;
-  }
-
-  void handleUnAuthenticated(statusCode, shouldNavigate) {
-    if (statusCode == 401) {
-      if (shouldNavigate) {
-        NavigatorHelper.replaceAll(const LoginScreen());
-      } else {
-        throw ApiError(
-          message: 'Unauthorized',
-        );
-      }
-    }
   }
 }

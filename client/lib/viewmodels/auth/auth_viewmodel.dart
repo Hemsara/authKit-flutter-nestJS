@@ -2,7 +2,9 @@ import 'package:client/api/api_service.dart';
 import 'package:client/api/models/api/error.dart';
 import 'package:client/models/dto/auth/login.dto.dart';
 import 'package:client/models/dto/auth/register.dto.dart';
+import 'package:client/models/dto/auth/token_response.dart';
 import 'package:client/repository/auth/auth_repository.dart';
+import 'package:client/res/storage.dart';
 import 'package:flutter/material.dart';
 
 class AuthViewModel extends ChangeNotifier {
@@ -25,10 +27,14 @@ class AuthViewModel extends ChangeNotifier {
       _loginIn = true;
       notifyListeners();
 
-      final success = await _authRepository.login(dto);
+      TokenResponse token = await _authRepository.login(dto);
+      await SecureStorageHelper().delete("token");
+      await SecureStorageHelper().write("token", token.accessToken);
+
       _loginIn = false;
+
       notifyListeners();
-      return success;
+      return true;
     } on ApiError catch (err) {
       _error = err.message;
       return false;

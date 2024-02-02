@@ -11,6 +11,9 @@ import 'package:client/models/dto/dto.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../res/navigator.dart';
+import '../views/login/screens/login_screen.dart';
+
 class ApiService extends BaseApiService {
   // Send an HTTP request and handle the response
   Future<ApiResponse> _sendRequest(
@@ -40,8 +43,11 @@ class ApiService extends BaseApiService {
       log("🗣️ Body: $resData");
       log("=======");
 
-      handleUnAuthenticated(response.statusCode, shouldNavigate);
-
+      if (response.statusCode == 401) {
+        if (shouldNavigate) {
+          NavigatorHelper.replaceAll(const LoginScreen());
+        }
+      }
       if (response.statusCode == 200 || response.statusCode == 201) {
         return ApiResponse(
           status: RequestStatus.success,
@@ -116,11 +122,13 @@ class ApiService extends BaseApiService {
   Future<ApiResponse> post(
       {required DTO data,
       required String endpoint,
+      bool navigateToLogin = true,
       String? baseURL,
       bool? isProtected}) async {
     return _sendRequest(
       method: "POST",
       endpoint: endpoint,
+      shouldNavigate: navigateToLogin,
       data: data,
       mustAuthenticated: isProtected ?? true,
     );
